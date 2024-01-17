@@ -1,7 +1,20 @@
-# Desafio DevOps
- Implantação de um Sistema completo com monitoramento e CICD com Kubernetes na AWS
+# DevOps Challenge
+Implementation of a complete system with monitoring and CICD with Kubernetes on AWS
 
 ![](https://github.com/AlphaEzops/kubernetes-challenge/blob/main/docs/system-workflow.gif)
+
+## Table of Contents
+1. [Requirements](#1-requirements)
+
+
+## 1. Requirements
+you need install all the tools below:
+- [terraform](./docs/requirements/terraform.md) - tools for provisioning and managing cloud infrastructure 
+- [kubectl](./docs/requirements/kubectl.md) - command-line tool for Kubernetes 
+- [aws cli](./docs/requirements/aws-cli.md) - command-line tool for AWS 
+- [helm](./docs/requirements/helm.md) - package manager for Kubernetes  
+- [golang](./docs/requirements/golang.md) - programming language 
+- [docker](./docs/requirements/docker.md) - container platform
 
 O desafio consiste em criar e gerenciar um ambiente Kubernetes altamente eficiente na AWS, utilizando as melhores práticas de DevOps. Abaixo, detalhamos cada passo e fornecemos mais informações para orientar a execução:
 
