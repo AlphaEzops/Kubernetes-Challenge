@@ -5,6 +5,7 @@ Implementation of a complete system with monitoring and CICD with Kubernetes on 
 
 ## Table of Contents
 1. [Requirements](#1-requirements)
+2. [Components](#2-stacks)
 
 
 ## 1. Requirements
@@ -15,6 +16,10 @@ you need install all the tools below:
 - [helm](./docs/requirements/helm.md) - package manager for Kubernetes  
 - [golang](./docs/requirements/golang.md) - programming language 
 - [docker](./docs/requirements/docker.md) - container platform
+
+## 2. Components
+Components of the system:
+- [components](./docs/components.md) - components of the system
 
 O desafio consiste em criar e gerenciar um ambiente Kubernetes altamente eficiente na AWS, utilizando as melhores práticas de DevOps. Abaixo, detalhamos cada passo e fornecemos mais informações para orientar a execução:
 
