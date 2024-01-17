@@ -30,9 +30,8 @@ O desafio consiste em criar e gerenciar um ambiente Kubernetes altamente eficien
 - Armazene o estado do Terraform remotamente, preferencialmente no Amazon S3, para garantir consistência e colaboração.
 - Evite hardcode de valores no terraform, utilize variaveis e outputs.
 
-#### 2. AutoScaling com Cluster Autoscaler e HPA:
+#### 2. AutoScaling com Cluster Autoscaler:
 - Configure o Cluster Autoscaler para escalabilidade automática do número de nós no cluster, garantindo resposta dinâmica à demanda e economia de recursos.
-- Implemente o Horizontal Pod Autoscaler (HPA) para a API Golang, ajustando automaticamente o número de réplicas conforme a carga de trabalho.
 
 #### 3. DNS com Ingress e Cert-Manager:
 - Configure o Ingress para direcionar tráfego HTTP para a API Golang, garantindo uma comunicação eficiente.
@@ -42,7 +41,7 @@ O desafio consiste em criar e gerenciar um ambiente Kubernetes altamente eficien
 - Desenvolva uma API em Golang, com endpoints para listar buckets do S3 e deletar um bucket.
 - Dockerize API em Golang utilizando um Dockerfile
 - Crie um Helm chart para a aplicação, facilitando o gerenciamento de configurações e atualizações.
-- Helm chart deve conter o deployment da aplicação, service, ingress e HPA.
+- Helm chart deve conter o deployment da aplicação, service, ingress, service account e HPA.
 
 #### 6. Integração com CodePipeline,CodeBuild and ArgoCD:
 - Configure pipelines no CodePipeline para automatizar o processo de CI.
