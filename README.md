@@ -25,9 +25,10 @@ you need install all the tools below:
 O desafio consiste em criar e gerenciar um ambiente Kubernetes altamente eficiente na AWS, utilizando as melhores práticas de DevOps. Abaixo, detalhamos cada passo e fornecemos mais informações para orientar a execução:
 
 #### 1. Provisionamento de Infraestrutura com Terraform:
-- Utilize o Terraform para criar a infraestrutura na AWS, incluindo VPC, AWS DEV TOOLS, Helms chart ,EKS, ArgoCD, e outros recursos essenciais.
+- Utilize o Terraform para criar a infraestrutura na AWS, incluindo VPC, AWS DEV TOOLS, EKS, ArgoCD, Grafana, Prometheus e components essenciais.
 - Organize e modularize seus recursos com módulos Terraform para facilitar a manutenção.
 - Armazene o estado do Terraform remotamente, preferencialmente no Amazon S3, para garantir consistência e colaboração.
+- Evite hardcode de valores no terraform, utilize variaveis e outputs.
 
 #### 2. AutoScaling com Cluster Autoscaler e HPA:
 - Configure o Cluster Autoscaler para escalabilidade automática do número de nós no cluster, garantindo resposta dinâmica à demanda e economia de recursos.
@@ -39,21 +40,23 @@ O desafio consiste em criar e gerenciar um ambiente Kubernetes altamente eficien
 
 #### 4. API Service com Golang utilizando Helm:
 - Desenvolva uma API em Golang, com endpoints para listar buckets do S3 e deletar um bucket.
+- Dockerize API em Golang utilizando um Dockerfile
 - Crie um Helm chart para a aplicação, facilitando o gerenciamento de configurações e atualizações.
-- Dockerize API
+- Helm chart deve conter o deployment da aplicação, service, ingress e HPA.
 
-#### 6. Integração com CodePipeline e CodeBuild:
-- Configure pipelines no CodePipeline para automatizar o processo de CI, integrando testes e validações.
-- Construa uma imagem da API em Golang utilizando um Dockerfile e envie para o Elastic Container Registry (ECR) para garantir rastreabilidade e versionamento.
-- Integre tags da imagem ao deployment, mantendo um histórico claro das mudanças no repositório.
-- Faça intergraçao do code build com o ArgoCD (code build deve fazer o CI e o ArgoCD de fazer o CD).
-
-#### 7. Deployment com ArgoCD:
-- Instale e configure o ArgoCD no cluster Kubernetes para facilitar o deployment contínuo
+#### 6. Integração com CodePipeline,CodeBuild and ArgoCD:
+- Configure pipelines no CodePipeline para automatizar o processo de CI.
+- Construa uma imagem da API em Golang utilizando um Dockerfile e envie para o Elastic Container Registry (ECR) para garantir rastreabilidade e versionamento. e envie devolta o a tag da imagem no values do helm chart. para que o ArgoCD possa fazer o deployment.
 - configure o ArgoCD para fazer a sincronização com o repositório Git onde se encontra o GO APP.
+- Faça intergraçao do code build com o ArgoCD (code build deve fazer o CI e o ArgoCD de fazer o CD).
+- Crie um app no ArgoCD para fazer o deployment da aplicação. Aponte o ArgoCD para o repositório Git onde se encontra o GO APP. link ofcial do ArgoCD: https://argoproj.github.io/argo-cd/getting_started/
 
 #### 8. Monitoramento com Prometheus e Grafana:
-- Implemente o Prometheus para coletar métricas do cluster e da API, configurando alertas para ações proativas.
-- Configure o Grafana para criar dashboards informativos, permitindo uma visualização fácil da saúde do cluster e da aplicação.
+- Implemente o Prometheus para coleta meticulosa de métricas do cluster e da API, estabelecendo alertas proativos para ações responsivas.
+- Configure alvos de scraping no Prometheus para capturar métricas essenciais do Argocd e do aplicativo Go, garantindo uma visão abrangente do desempenho.
+- Ajuste os alertas do Prometheus com base nas métricas críticas, proporcionando uma resposta imediata a eventos adversos.
+- Configure o Grafana para elaborar dashboards informativos, possibilitando uma visualização intuitiva da saúde do cluster e da aplicação.
+- Integre o Grafana com o Prometheus para extrair e exibir visualmente as métricas coletadas, proporcionando insights rápidos e eficazes.
+- Personalize os dashboards do Grafana para destacar métricas específicas do Argocd e do aplicativo Go, facilitando a identificação de áreas críticas para monitoramento contínuo.
 
 Este desafio visa avaliar sua capacidade de projetar e implementar uma infraestrutura escalável, integrada e monitorada, utilizando ferramentas populares de DevOps. Boa sorte!
