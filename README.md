@@ -19,7 +19,7 @@ you need install all the tools below:
 
 ## 2. Components
  Infrastructure components and key fundamentals. It covers the integration of Continuous Integration/Continuous Delivery (CI/CD) practices, Domain Name System (DNS) management, scalability solutions, and computing in a cloud environment. Additionally, it explores the monitoring tools employed for effective observation.
-- [components](./docs/components.md) - components of the system
+- [components](./docs/components/main.md) - components of the system
 
 ## 3. Challenge
 O desafio consiste em criar e gerenciar um ambiente Kubernetes altamente eficiente na AWS, utilizando as melhores práticas de DevOps. Abaixo, detalhamos cada passo e fornecemos mais informações para orientar a execução:
