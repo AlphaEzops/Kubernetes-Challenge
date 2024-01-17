@@ -1,4 +1,6 @@
-### Desafio DevOps Júnior: Implantação Eficiente de um Cluster EKS na AWS
+### Desafio DevOps Júnior: Implantação de um Sistema completo com monitoramento, CICD com Kubernetes na AWS
+
+![](https://github.com/AlphaEzops/kubernetes-challenge/blob/main/docs/system-workflow.gif)
 
 O desafio consiste em criar e gerenciar um ambiente Kubernetes altamente eficiente na AWS, utilizando as melhores práticas de DevOps. Abaixo, detalhamos cada passo e fornecemos mais informações para orientar a execução:
 
