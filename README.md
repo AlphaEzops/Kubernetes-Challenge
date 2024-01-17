@@ -25,25 +25,37 @@ you need install all the tools below:
 O desafio consiste em criar e gerenciar um ambiente Kubernetes altamente eficiente na AWS, utilizando as melhores práticas de DevOps. Abaixo, detalhamos cada passo e fornecemos mais informações para orientar a execução:
 
 #### 1. Provisionamento de Infraestrutura com Terraform:
-- Utilize o Terraform para criar a infraestrutura na AWS, incluindo VPC, AWS DEV TOOLS, EKS, ArgoCD, Grafana, Prometheus e components essenciais.
+- Utilize o Terraform para criar a infraestrutura na AWS, incluindo VPC, AWS DEV TOOLS, EKS, ArgoCD e components essenciais.
 - Organize e modularize seus recursos com módulos Terraform para facilitar a manutenção.
 - Armazene o estado do Terraform remotamente, preferencialmente no Amazon S3, para garantir consistência e colaboração.
 - Evite hardcode de valores no terraform, utilize variaveis e outputs.
 
+#### 2. Gerenciamento de Configuraçao com Helm:
+- A infra deve ser feita usando terraform, mas o gerenciamento de configuraçao (templates kubernetes com deployments ou configmaps) devem ser feitos com helm puro.
+- Crie Helms chart para grafana, prometheus, Cert Manager e Ingress nginx.
+- Crie Applications (ArgoCD CRDs) para cada helm chart criado. Com isso teremos CICD dos serviços do sistema (grafana, prometheus, Cert Manager e Ingress nginx)
+- Separe arquivos do terraform usados para provisionamento (terraform) dos arquivos de genriamentos de configuraçao (helm) em pastas diferentes.
+
 #### 2. AutoScaling com Cluster Autoscaler:
 - Configure o Cluster Autoscaler para escalabilidade automática do número de nós no cluster, garantindo resposta dinâmica à demanda e economia de recursos.
+- Faça um teste de carga e valide se Cluster Autoscaler criou novos nodes e se eles estao **READY**.
 
 #### 3. DNS com Ingress e Cert-Manager:
-- Configure o Ingress para direcionar tráfego HTTP para a API Golang, garantindo uma comunicação eficiente.
-- Utilize o Cert-Manager para provisionar automaticamente certificados SSL, garantindo a segurança das comunicações.
+- O Ingress Ingress nginx controler deve ser instalando no cluster EKS pelo ArgoCD verifique se a instalaçao foi feita corretamente na interface do ArgoCD
+- Configure o Ingress para direcionar tráfego HTTP para os serviços, garantindo uma comunicação.
+- O CertManager deve ser instalando no cluster EKS pelo ArgoCD verifique se a instalaçao foi feita corretamente na interface do ArgoCD
+- Configure Cert-Manager para provisionar automaticamente certificados SSL, garantindo a segurança das comunicações.
+- Route53 Deve ter os records do tipo cname apontando para o loadbalancer que o Ingress nginx provisionou.
+- Records requiridos pelo desafio:  Grafana, go api e ArgoCD.
+- Todos os records devem estar com TLS/SSL
 
 #### 4. API Service com Golang utilizando Helm:
-- Desenvolva uma API em Golang, com endpoints para listar buckets do S3 e deletar um bucket.
+- Desenvolva uma API em Golang, com rotas para listar buckets, deletar e criar buckets no s3.
 - Dockerize API em Golang utilizando um Dockerfile
 - Crie um Helm chart para a aplicação, facilitando o gerenciamento de configurações e atualizações.
 - Helm chart deve conter o deployment da aplicação, service, ingress, service account e HPA.
 
-#### 6. Integração com CodePipeline,CodeBuild and ArgoCD:
+#### 6. CICD com CodePipeline,CodeBuild and ArgoCD:
 - Configure pipelines no CodePipeline para automatizar o processo de CI.
 - Construa uma imagem da API em Golang utilizando um Dockerfile e envie para o Elastic Container Registry (ECR) para garantir rastreabilidade e versionamento. e envie devolta o a tag da imagem no values do helm chart. para que o ArgoCD possa fazer o deployment.
 - configure o ArgoCD para fazer a sincronização com o repositório Git onde se encontra o GO APP.
