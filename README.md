@@ -5,8 +5,8 @@ Implementation of a complete system with monitoring and CICD with Kubernetes on 
 
 ## Table of Contents
 1. [Requirements](#1-requirements)
-2. [Components](#2-stacks)
-
+2. [Components](#2-components)
+3. [challenge](#3-challenge)
 
 ## 1. Requirements
 you need install all the tools below:
@@ -18,9 +18,10 @@ you need install all the tools below:
 - [docker](./docs/requirements/docker.md) - container platform
 
 ## 2. Components
-Components of the system:
+ Infrastructure components and key fundamentals. It covers the integration of Continuous Integration/Continuous Delivery (CI/CD) practices, Domain Name System (DNS) management, scalability solutions, and computing in a cloud environment. Additionally, it explores the monitoring tools employed for effective observation.
 - [components](./docs/components.md) - components of the system
 
+## 3. Challenge
 O desafio consiste em criar e gerenciar um ambiente Kubernetes altamente eficiente na AWS, utilizando as melhores práticas de DevOps. Abaixo, detalhamos cada passo e fornecemos mais informações para orientar a execução:
 
 #### 1. Provisionamento de Infraestrutura com Terraform:
