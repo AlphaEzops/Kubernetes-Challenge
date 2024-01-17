@@ -1,5 +1,5 @@
 # Desafio DevOps
- Implantação de um Sistema completo com monitoramento, CICD com Kubernetes na AWS
+ Implantação de um Sistema completo com monitoramento e CICD com Kubernetes na AWS
 
 ![](https://github.com/AlphaEzops/kubernetes-challenge/blob/main/docs/system-workflow.gif)
 
